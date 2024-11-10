@@ -1,0 +1,70 @@
+\documentclass[a4paper, landscape]{article}
+\usepackage{geometry}
+\geometry{margin=0.5cm} % Ajuster les marges pour occuper toute la largeur
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+
+% Réduire l'épaisseur des lignes du tableau
+\setlength{\arrayrulewidth}{0.05mm}
+
+\begin{document}
+
+\scriptsize % Réduire la taille de police pour que le tableau tienne sur une page
+
+\begin{longtable}{|c|l|p{0.4\textwidth}|p{0.3\textwidth}|}
+    \hline
+    \textbf{N°} & \textbf{Type et algèbre relationnel} & \textbf{Requête SQL} & \textbf{Question} \\
+    \hline
+    1 & Projection simple avec \textcolor{red}{\textbf{SELECT}} & \textcolor{red}{\textbf{SELECT}} NOM, FONCTION \textcolor{red}{\textbf{FROM}} EMP; \newline \newline & Quels sont les noms et fonctions des employés ? \\
+    \hline
+    \newline
+    2 & Sélection avec \textcolor{red}{\textbf{WHERE}} & \textcolor{red}{\textbf{SELECT}} * \textcolor{red}{\textbf{FROM}} EMP \textcolor{red}{\textbf{WHERE}} SALAIRE > 2500; \newline \newline & Quels employés ont un salaire supérieur à 2500 ? \\
+    \hline
+    3 & Utilisation de \textcolor{red}{\textbf{DISTINCT}} & \textcolor{red}{\textbf{SELECT DISTINCT}} FONCTION \textcolor{red}{\textbf{FROM}} EMP; \newline \newline & Quelles sont les différentes fonctions des employés ? \\
+    \hline
+    4 & Tri avec \textcolor{red}{\textbf{ORDER BY}} & \textcolor{red}{\textbf{SELECT}} NOM, SALAIRE \textcolor{red}{\textbf{FROM}} EMP \textcolor{red}{\textbf{ORDER BY}} SALAIRE \textcolor{red}{\textbf{DESC}}; \newline \newline & Affichez les employés par salaire décroissant. \\
+    \hline
+    5 & Opérateur BETWEEN & \textcolor{red}{\textbf{SELECT}} NOM \textcolor{red}{\textbf{FROM}} EMP \textcolor{red}{\textbf{WHERE}} SALAIRE BETWEEN 2000 \textcolor{red}{\textbf{AND}} 3000; \newline \newline & Quels employés ont un salaire entre 2000 et 3000 ? \\
+    \hline
+    6 & Somme avec \textcolor{red}{\textbf{SUM}} & \textcolor{red}{\textbf{SELECT SUM}}(SALAIRE) \textcolor{red}{\textbf{FROM}} EMP; \newline \newline  & Quel est le salaire total de tous les employés ? \\
+    \hline
+    7 & Maximum avec \textcolor{red}{\textbf{MAX}} & \textcolor{red}{\textbf{SELECT MAX}}(SALAIRE) \textcolor{red}{\textbf{FROM}} EMP; \newline \newline  & Quel est le salaire le plus élevé ? \\
+    \hline
+    8 & Regroupement avec \textcolor{red}{\textbf{GROUP BY}} & \textcolor{red}{\textbf{SELECT}} FONCTION, \textcolor{red}{\textbf{COUNT}}(*) \textcolor{red}{\textbf{FROM}} EMP \textcolor{red}{\textbf{GROUP BY}} FONCTION;\newline \newline  & Combien d'employés par fonction ? \\
+    \hline
+    9 & Filtrage avec \textcolor{red}{\textbf{HAVING}} & \textcolor{red}{\textbf{SELECT}} N\_DEPT, \textcolor{red}{\textbf{AVG}}(SALAIRE) \textcolor{red}{\textbf{FROM}} EMP \textcolor{red}{\textbf{GROUP BY}} N\_DEPT \textcolor{red}{\textbf{HAVING AVG}}(SALAIRE) \textgreater 2500; \newline \newline & Quels départements ont un salaire moyen supérieur à 2500 ? \\
+    \hline
+    10 & Jointure interne & \textcolor{red}{\textbf{SELECT}} EMP.NOM, DEPT.NOM\_DEPT \textcolor{red}{\textbf{FROM}} EMP, DEPT \textcolor{red}{\textbf{WHERE}} EMP.N\_DEPT = DEPT.N\_DEPT; \newline \newline & Affichez les noms des employés et les départements associés. \\
+    \hline
+    11 & Insertion de données & \textcolor{red}{\textbf{INSERT INTO}} EMP (NOM, SALAIRE) \textcolor{red}{\textbf{VALUES}} ('DUPONT', 1800);\newline \newline  & Insérez un nouvel employé DUPONT \\
+    \hline
+    12 & Suppression de données & \textcolor{red}{\textbf{DELETE FROM}} EMP \textcolor{red}{\textbf{WHERE}} NOM = 'MARTIN'; \newline \newline & Supprimez l'employé MARTIN de la table EMP. \\
+    \hline
+    13 & Jointure externe gauche (sans `JOIN`) & \textcolor{red}{\textbf{SELECT}} EMP.NOM, DEPT.NOM\_DEPT \textcolor{red}{\textbf{FROM}} EMP, DEPT \textcolor{red}{\textbf{WHERE}} EMP.N\_DEPT = DEPT.N\_DEPT(+); \newline \newline
+& Affiché tous les employés et leurs départements meme si aucun associé \\
+    \hline
+    14 & Comptage par département & \textcolor{red}{\textbf{SELECT}} N\_DEPT, \textcolor{red}{\textbf{COUNT}}(*) \textcolor{red}{\textbf{FROM}} EMP \textcolor{red}{\textbf{GROUP BY}} N\_DEPT; \newline \newline & Combien d'employés dans chaque département ? \\
+    \hline
+    16 & Recherche avec LIKE & \textcolor{red}{\textbf{SELECT}} NOM \textcolor{red}{\textbf{FROM}} EMP \textcolor{red}{\textbf{WHERE}} NOM \textcolor{red}{\textbf{LIKE}} 'M\%' \newline \newline & Quels employés ont un nom commençant par "M" ? \\
+    \hline
+    17 & Suppression conditionnelle & \textcolor{red}{\textbf{DELETE FROM}} EMP \textcolor{red}{\textbf{WHERE}} N\_DEPT = 30 \textcolor{red}{\textbf{AND}} FONCTION = 'Comptable';\newline \newline& Supprimer les employés comptables du département 30. \\
+    \hline
+    18 & Mise à jour avec \textcolor{red}{\textbf{SET}} & \textcolor{red}{\textbf{UPDATE}} EMP \textcolor{red}{\textbf{SET}} FONCTION = 'Directeur' \textcolor{red}{\textbf{WHERE}} NOM = 'GARNIER'; & Modifiez la fonction de l'employé GARNIER en Directeur. \\
+    \hline
+    19 & Recherche avec \textcolor{red}{\textbf{IN}} dans une sous-requête & \textcolor{red}{\textbf{SELECT}} NOM \textcolor{red}{\textbf{FROM}} EMP \textcolor{red}{\textbf{WHERE}} N\_DEPT \textcolor{red}{\textbf{IN}} (\textcolor{red}{\textbf{SELECT}} N\_DEPT \textcolor{red}{\textbf{FROM}} DEPT \textcolor{red}{\textbf{WHERE}} NOM\_DEPT = 'Finance'); & Quels employés travaillent dans le département "Finance" ? \\
+    \hline
+    20 & Tri avec deux critères & \textcolor{red}{\textbf{SELECT}} NOM, SALAIRE, N\_DEPT \textcolor{red}{\textbf{FROM}} EMP \textcolor{red}{\textbf{ORDER BY}} N\_DEPT \textcolor{red}{\textbf{ASC}}, SALAIRE \textcolor{red}{\textbf{DESC}}; & Affichez les employés triés par département croissant puis salaire décroissant. \\
+    \hline
+    21 & Ajout de plusieurs enregistrements & \textcolor{red}{\textbf{INSERT INTO}} EMP (NOM, FONCTION, SALAIRE) \textcolor{red}{\textbf{VALUES}} ('TARDY', 'Analyste', 2200), ('JULIEN', 'Comptable', 1900); & Insérez deux nouveaux employés : TARDY et JULIEN \\
+    \hline
+    
+    22 & Jointure, agrégation par comptage, puis projection & \textcolor{red}{\textbf{SELECT}} DEPT.N\_DEPT, DEPT.NOM, DEPT.LIEU, \textcolor{red}{\textbf{count(*)}} \textcolor{red}{\textbf{FROM}} EMP, DEPT \textcolor{red}{\textbf{WHERE}} EMP.N\_DEPT = DEPT.N\_DEPT \textcolor{red}{\textbf{GROUP BY}} DEPT.N\_DEPT, DEPT.NOM, DEPT.LIEU; & Retourner le nombre d'employés par département avec les informations de chaque département. \\
+\hline
+
+\end{longtable}
+
+\end{document}
